@@ -2,7 +2,7 @@ from ROOT import *
 gROOT.SetBatch()
 
 def getHistoInfo(file_in="", sepCapID=False, signal=False, qieRange = 0):
-	result = {}
+	slot_result = {}
 	f = TFile(file_in, "READ")
 	if sepCapID:
 		rangeADCoffset = qieRange*64.
@@ -21,7 +21,7 @@ def getHistoInfo(file_in="", sepCapID=False, signal=False, qieRange = 0):
 					info["mean"].append(h.GetMean()-offset+rangeADCoffset)
 					info["RMS"].append(max(h.GetRMS(), 0.01))
 
-				result[histNum] = info
+				slot_result[histNum] = info
 		
 	else:
                 if signal:
@@ -45,7 +45,7 @@ def getHistoInfo(file_in="", sepCapID=False, signal=False, qieRange = 0):
 					info["signalBinMax"] = h.GetBinContent(binMax)
 					info["signalRMS"] = h.GetRMS()
 
-					result[histNum] = info
+					slot_result[histNum] = info
 
                 else:
                         for i_link in range(24):
@@ -58,8 +58,8 @@ def getHistoInfo(file_in="", sepCapID=False, signal=False, qieRange = 0):
 					info["pedBinMax"] = h.GetMaximumBin() 
 					info["pedRMS"] = h.GetRMS()
 					
-                                        result[histNum] = info
+                                        slot_result[histNum] = info
  
 	f.Close()
-	return result
+	return slot_result
 	
