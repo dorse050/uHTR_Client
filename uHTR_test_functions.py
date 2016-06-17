@@ -26,8 +26,11 @@ def getHistoResults(crate=41, slot=5, norbits=1000, sepCapID=0, signalOn=0, outD
         
         return testResults
 
-def qieMapping(slots, master_dict={}, ts):
+def QIE_mapping(slots, master_dict={}, ts):
 	return None
 
+def get_sig_histo(results)
+        for slot, chip in results.iteritems():
+                for chip, histo in slot.iteritems():
 
- 
+
